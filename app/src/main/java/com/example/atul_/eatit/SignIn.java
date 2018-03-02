@@ -27,12 +27,11 @@ public class SignIn extends AppCompatActivity {
     TextView btnSignUp;
     ProgressDialog progressDialog;
 
-    public final boolean validate() {
-        boolean valid = true;
 
+    public final boolean validate() {
         String phone = edtPhone.getText().toString();
         String password = edtPassword.getText().toString();
-
+        boolean valid = true;
         if (phone.isEmpty() ) {
             edtPhone.setError("enter a valid User Id");
             valid = false;
@@ -78,8 +77,10 @@ public class SignIn extends AppCompatActivity {
                 mDialog.setMessage("Please wait");
                 mDialog.show();
                 table_user.addValueEventListener(new ValueEventListener() {
+
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
+
                         if(dataSnapshot.child(edtPhone.getText().toString()).exists()) {
                             mDialog.dismiss();
                             User user = dataSnapshot.child(edtPhone.getText().toString()).getValue(User.class);

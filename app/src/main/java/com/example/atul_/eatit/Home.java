@@ -126,8 +126,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             }
 
             public boolean onOptionsItemSelected(MenuItem item) {
-
-
                 return super.onOptionsItemSelected(item);
             }
 
