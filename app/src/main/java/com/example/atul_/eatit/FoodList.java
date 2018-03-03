@@ -1,6 +1,8 @@
 package com.example.atul_.eatit;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,6 +17,10 @@ import android.widget.Toast;
 import com.example.atul_.eatit.Interface.ItemClickListener;
 import com.example.atul_.eatit.ViewHolder.FoodViewHolder;
 import com.example.atul_.eatit.model.Food;
+import com.facebook.CallbackManager;
+import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.SharePhotoContent;
+import com.facebook.share.widget.ShareDialog;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.database.DataSnapshot;
@@ -24,6 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import org.w3c.dom.Text;
 
@@ -43,11 +50,42 @@ public class FoodList extends AppCompatActivity {
     FirebaseRecyclerAdapter<Food,FoodViewHolder> searchadapter;
     List<String> suggestList=new ArrayList<>();
     MaterialSearchBar materialSearchBar;
+    CallbackManager callbackManager;
+    ShareDialog shareDialog;
+
+    Target target=new Target() {
+        @Override
+        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+            SharePhoto photo = new SharePhoto.Builder()
+                    .setBitmap(bitmap)
+                    .build();
+            if(ShareDialog.canShow(SharePhotoContent.class)){
+                SharePhotoContent content=new SharePhotoContent.Builder().addPhoto(photo).build();
+                shareDialog.show(content);
+            }
+        }
+
+        @Override
+        public void onBitmapFailed(Drawable errorDrawable) {
+
+        }
+
+        @Override
+        public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+        }
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_list);
+
+        callbackManager= CallbackManager.Factory.create();
+        shareDialog=new ShareDialog(this);
+
+
 
         database=FirebaseDatabase.getInstance();
         foodList=database.getReference("Food");
@@ -114,6 +152,9 @@ public class FoodList extends AppCompatActivity {
         });
     }
 
+
+
+
     private void startSearch(CharSequence text) {
         searchadapter=new FirebaseRecyclerAdapter<Food, FoodViewHolder>(Food.class,R.layout.food_item,FoodViewHolder.class,
                 foodList.orderByChild("name").equalTo(text.toString())) {
@@ -158,9 +199,16 @@ public class FoodList extends AppCompatActivity {
       adapter=new FirebaseRecyclerAdapter<Food,FoodViewHolder> (Food.class,R.layout.food_item,FoodViewHolder.class,
                        foodList.orderByChild("MenuId").equalTo(categoryId)
       ){
-          protected void populateViewHolder(FoodViewHolder viewHolder, Food model,int position){
+          protected void populateViewHolder(final FoodViewHolder viewHolder, final Food model, int position){
               viewHolder.food_name.setText(model.getName());
               Picasso.with(getBaseContext()).load(model.getImage()).into(viewHolder.food_image);
+
+              viewHolder.share_image.setOnClickListener(new View.OnClickListener() {
+                  @Override
+                  public void onClick(View v) {
+                      Picasso.with(getApplicationContext()).load("http://www.dogbazar.org/wp-content/uploads/2014/09/british-bull-dog-puppies.jpg").into(target);
+                  }
+              });
 
               final Food local = model;
               viewHolder.setItemClickListener(new ItemClickListener() {

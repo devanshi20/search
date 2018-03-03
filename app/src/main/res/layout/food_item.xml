@@ -34,16 +34,26 @@
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
                 android:gravity="center"
-                android:layout_weight="9"
+                android:layout_weight="8"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnshare"
+                android:layout_weight="1"
+                android:tint="@android:color/white"
+                android:src="@drawable/ic_share_black_24dp"
+                />
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/fav"
                 android:tint="@android:color/white"
                 android:layout_weight="1"
-                android:src="@drawable/ic_favorite_border_black_24dp"/>
+                android:src="@drawable/ic_favorite_border_black_24dp"
+                />
 
         </LinearLayout>
 
