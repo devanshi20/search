@@ -14,8 +14,8 @@ import com.example.atul_.eatit.R;
 
 public class FoodViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public TextView food_name;
-    public ImageView food_image,share_image;
+    public TextView food_name,ingText;
+    public ImageView food_image,share_image,ing;
 
     public void setItemClickListener(ItemClickListener itemClickListener) {
 
@@ -25,6 +25,8 @@ public class FoodViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     private ItemClickListener itemClickListener;
     public FoodViewHolder(View itemView) {
         super(itemView);
+        ing= (ImageView) itemView.findViewById(R.id.ing);
+        ingText=(TextView)itemView.findViewById(R.id.ingtext);
         food_name= (TextView)itemView.findViewById(R.id.food_name);
         food_image= (ImageView)itemView.findViewById(R.id.food_image);
         share_image=(ImageView)itemView.findViewById(R.id.btnshare);

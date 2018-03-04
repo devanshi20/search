@@ -39,6 +39,8 @@ import java.util.List;
 
 public class FoodList extends AppCompatActivity {
 
+
+
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
 
@@ -50,6 +52,8 @@ public class FoodList extends AppCompatActivity {
     FirebaseRecyclerAdapter<Food,FoodViewHolder> searchadapter;
     List<String> suggestList=new ArrayList<>();
     MaterialSearchBar materialSearchBar;
+
+
     CallbackManager callbackManager;
     ShareDialog shareDialog;
 
@@ -206,7 +210,7 @@ public class FoodList extends AppCompatActivity {
               viewHolder.share_image.setOnClickListener(new View.OnClickListener() {
                   @Override
                   public void onClick(View v) {
-                      Picasso.with(getApplicationContext()).load("http://www.dogbazar.org/wp-content/uploads/2014/09/british-bull-dog-puppies.jpg").into(target);
+                      Picasso.with(getApplicationContext()).load(model.getImage()).into(target);
                   }
               });
 
@@ -227,6 +231,7 @@ public class FoodList extends AppCompatActivity {
 
 
       recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
 
     }
 }

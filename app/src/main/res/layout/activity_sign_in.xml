@@ -27,6 +27,8 @@
             android:layout_marginBottom="8dp">
             <EditText
                 android:id="@+id/edtphone"
+                android:text="101"
+                android:textColor="@android:color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
@@ -41,6 +43,8 @@
             android:layout_marginBottom="8dp">
             <EditText
                 android:id="@+id/edtpassword"
+                android:text="123"
+                android:textColor="@android:color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
@@ -62,8 +66,9 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:text="No account yet? Create one"
+            android:textColor="@android:color/white"
             android:gravity="center"
-            android:textSize="16dip"/>
+            android:textSize="18dp"/>
 
     </LinearLayout>
 </ScrollView>

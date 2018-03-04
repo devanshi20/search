@@ -13,13 +13,9 @@
         android:theme="@style/AppTheme">
 
         <meta-data android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/Facebook_app_id">
+            android:value="@string/facebook_app_id">
         </meta-data>
 
-        <provider
-            android:authorities="com.facebook.app.FacebookContentProvider174085699906744"
-            android:name="com.facebook.FacebookContentProvider"
-            android:exported="true"/>
 
         <activity android:name=".SignIn">
             <intent-filter>
@@ -35,7 +31,14 @@
         <activity android:name=".FoodList" />
         <activity android:name=".FoodDetail" />
         <activity android:name=".Cart"></activity>
-        
+
+
+        <provider
+            android:authorities="com.facebook.app.FacebookContentProvider174085699906744"
+            android:name="com.facebook.FacebookContentProvider"
+            android:exported="true"/>
+
+
     </application>
 
 </manifest>

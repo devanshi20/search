@@ -5,20 +5,24 @@ package com.example.atul_.eatit.model;
  */
 
 public class Food {
-    private String Name,Image, Description,Price,Discount,MenuId;
+    private String Name,Image, Description,Price,Discount,MenuId,Ing,IngText;
 
     public Food(){
 
     }
 
 
-    public Food(String name,String image,String description,String price,String discount,String menuId) {
+
+
+    public Food(String name, String image, String description, String price, String discount, String menuId, String ing, String ingText) {
         Name = name;
         Image = image;
         Description = description;
         Price = price;
         Discount = discount;
         MenuId = menuId;
+        Ing=ing;
+        IngText=ingText;
     }
 
     public String getName() {
@@ -67,6 +71,22 @@ public class Food {
 
     public void setMenuId(String menuId) {
         MenuId = menuId;
+    }
+
+    public String getIng() {
+        return Ing;
+    }
+
+    public void setIng(String ing) {
+        Ing = ing;
+    }
+
+    public String getIngText() {
+        return IngText;
+    }
+
+    public void setIngText(String ingText) {
+        IngText = ingText;
     }
 }
 
